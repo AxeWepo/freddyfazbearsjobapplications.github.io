@@ -1,1 +1,531 @@
-# freddyfazbearsjobapplications.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazbear Entertainment - Grand Re-Opening Portal</title>
+    <style>
+        :root {
+            --fnaf-green: #00ff41;
+            --fnaf-red: #ff3c3c;
+            --fnaf-text: #ffffff;
+            --bg-dark: #050505;
+            --panel-bg: #0d120d;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--fnaf-green);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            touch-action: none;
+            padding: 40px 0;
+        }
+
+        /* CRT Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 10;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .crt-monitor {
+            width: 95%;
+            max-width: 950px;
+            background: var(--panel-bg);
+            border: 10px solid #1a241a;
+            border-radius: 8px;
+            padding: 40px;
+            position: relative;
+            box-shadow: inset 0 0 80px #000, 0 10px 40px rgba(0,0,0,0.8);
+            animation: flicker 0.2s infinite;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.98; }
+            50% { opacity: 1; }
+            100% { opacity: 0.99; }
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px double var(--fnaf-green);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .grand-reopening {
+            font-size: 1rem;
+            color: var(--fnaf-red);
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin: 0;
+            letter-spacing: 3px;
+            color: #fff;
+            text-shadow: 0 0 10px var(--fnaf-green);
+        }
+
+        .sub-header {
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            color: #000;
+            background: var(--fnaf-green);
+            padding: 5px 15px;
+            font-size: 0.9rem;
+            margin: 30px 0 15px 0;
+            display: block;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-section {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.7rem;
+            color: var(--fnaf-green);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #1a2e1a;
+            color: #fff;
+            padding: 10px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #fff;
+            background: #050a05;
+        }
+
+        .questionnaire {
+            background: #050a05;
+            padding: 20px;
+            border: 1px solid #1a2e1a;
+        }
+
+        .q-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #0d1a0d;
+        }
+
+        .q-text {
+            font-size: 0.75rem;
+            color: #b9c9b9;
+            max-width: 85%;
+        }
+
+        #scan-container {
+            display: none;
+            margin: 25px 0;
+            border: 2px dashed var(--fnaf-green);
+            padding: 20px;
+            background: rgba(0, 255, 65, 0.03);
+            text-align: center;
+        }
+
+        .camera-view {
+            width: 220px;
+            height: 220px;
+            background: #000;
+            margin: 15px auto;
+            position: relative;
+            border: 3px solid #1a2e1a;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) sepia(0.2) contrast(1.5);
+        }
+
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--fnaf-green);
+            box-shadow: 0 0 15px var(--fnaf-green);
+            animation: scanLineMove 2.5s linear infinite;
+        }
+
+        @keyframes scanLineMove {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+
+        .legal-block {
+            background: #050a05;
+            border: 1px solid #1a2e1a;
+            padding: 20px;
+            font-size: 0.65rem;
+            color: #6a8a6a;
+            margin-top: 30px;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .signature-area {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+        }
+
+        .canvas-container {
+            background: #000;
+            border: 1px solid #1a2e1a;
+            width: 100%;
+            height: 80px;
+        }
+
+        #sig-canvas { width: 100%; height: 100%; cursor: crosshair; }
+
+        .btn {
+            background: #0d1a0d;
+            color: var(--fnaf-green);
+            border: 2px solid var(--fnaf-green);
+            padding: 15px 40px;
+            font-weight: bold;
+            font-family: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--fnaf-green);
+            color: #000;
+            box-shadow: 0 0 20px var(--fnaf-green);
+        }
+
+        #message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #0d1a0d;
+            border: 3px solid var(--fnaf-green);
+            padding: 40px;
+            z-index: 100;
+            text-align: center;
+            width: 450px;
+            box-shadow: 0 0 150px #000;
+        }
+
+        .status-footer {
+            margin-top: 40px;
+            font-size: 0.65rem;
+            color: #2a4a2a;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #1a2e1a;
+            padding-top: 15px;
+        }
+
+        .vintage-note {
+            font-size: 0.6rem;
+            font-style: italic;
+            color: #4a6a4a;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body onclick="initAudioOnce()">
+
+<div class="crt-monitor">
+    <div class="header">
+        <span class="grand-reopening">★ WELCOME BACK TO THE NEW AND IMPROVED FREDDY FAZBEAR'S PIZZA ★</span>
+        <h1>OFFICIAL EMPLOYMENT APPLICATION</h1>
+        <div class="sub-header">Fazbear Entertainment, Inc. // Form 1987-B // Hurricane, UT</div>
+        <div class="vintage-note">Successor to the 1983-1985 "Old Location" Fleet</div>
+    </div>
+
+    <form id="appForm">
+        <!-- 01 Personal Info -->
+        <div class="section-title">01. IDENTIFICATION & CONTACT</div>
+        <div class="form-grid">
+            <div class="form-section">
+                <label>First Name</label>
+                <input type="text" placeholder="John" required>
+            </div>
+            <div class="form-section">
+                <label>Middle Initial</label>
+                <input type="text" maxlength="1" placeholder="A.">
+            </div>
+            <div class="form-section">
+                <label>Last Name</label>
+                <input type="text" placeholder="Doe" required>
+            </div>
+        </div>
+        <div class="form-grid">
+            <div class="form-section" style="grid-column: span 2;">
+                <label>Current Address</label>
+                <input type="text" placeholder="123 Fazbear Ln, Hurricane, UT" required>
+            </div>
+            <div class="form-section">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="(555) 000-0000" required>
+            </div>
+        </div>
+
+        <!-- 02 Professional References -->
+        <div class="section-title">02. PROFESSIONAL REFERENCES</div>
+        <div class="form-grid">
+            <div class="form-section">
+                <label>Reference Name</label>
+                <input type="text" placeholder="Name" required>
+            </div>
+            <div class="form-section">
+                <label>Relationship</label>
+                <input type="text" placeholder="Manager/Peer" required>
+            </div>
+            <div class="form-section">
+                <label>Reference Phone</label>
+                <input type="tel" placeholder="(555) 555-5555" required>
+            </div>
+        </div>
+
+        <!-- 03 Availability & Placement -->
+        <div class="section-title">03. POSITION & AVAILABILITY</div>
+        <div class="form-grid">
+            <div class="form-section">
+                <label>Desired Role</label>
+                <select required>
+                    <option value="">-- Choose Position --</option>
+                    <option>Night Watchman (Graveyard Shift)</option>
+                    <option>Party Coordinator (Day Shift)</option>
+                    <option>Toy Animatronic Mechanic</option>
+                    <option>Legacy Unit Handler (Parts & Service)</option>
+                    <option>Prize Counter Logistics</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label>Start Date</label>
+                <input type="date" required>
+            </div>
+            <div class="form-section">
+                <label>Expected Hourly Pay</label>
+                <input type="text" placeholder="$4.25 (Minimum Wage)">
+            </div>
+        </div>
+
+        <!-- 04 Aptitude -->
+        <div class="section-title">04. SPECIALIZED SUITABILITY QUESTIONNAIRE</div>
+        <div class="questionnaire">
+            <div class="q-row">
+                <span class="q-text">Did you work at the previous 1983 or 1985 locations? (Fredbear's Family Diner or Circus Baby's?)</span>
+                <input type="checkbox">
+            </div>
+            <div class="q-row">
+                <span class="q-text">Are you comfortable working in a dark office for extended periods?</span>
+                <input type="checkbox">
+            </div>
+            <div class="q-row">
+                <span class="q-text">Do you have experience with hand-cranked spring-lock mechanisms? (Legacy Only)</span>
+                <input type="checkbox">
+            </div>
+            <div class="q-row">
+                <span class="q-text">Can you remain calm if an animatronic mascot approaches your desk?</span>
+                <input type="checkbox">
+            </div>
+            <div class="q-row">
+                <span class="q-text">Do you authorize the new "Toy" models to sync with your facial profile for recognition?</span>
+                <select style="width: 100px; padding: 2px;" id="biometric-select" onchange="handleScanToggle(this.value)">
+                    <option value="no">NO</option>
+                    <option value="yes">YES</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Scanning Module -->
+        <div id="scan-container">
+            <label>CRIMINAL DATABASE CROSS-REFERENCE SYNC (TOY MODEL PROTOCOL)</label>
+            <div class="camera-view">
+                <video id="webcam" autoplay playsinline muted></video>
+                <div class="scan-line"></div>
+            </div>
+            <div id="scan-status" style="font-size: 0.75rem; margin-top: 10px; font-weight: bold;">LINKING...</div>
+            <button type="button" class="btn" id="start-scan-btn" style="margin-top: 10px; padding: 5px 20px; font-size: 0.7rem; display: none;" onclick="runScan()">CAPTURE PROFILE</button>
+        </div>
+
+        <!-- 05 Legal -->
+        <div class="section-title">05. ACKNOWLEDGMENTS & WAIVERS</div>
+        <div class="legal-block">
+            Fazbear Entertainment is not responsible for damage to property or person. Should death or dismemberment occur, a missing person's report will be filed within 90 days, or as soon as floors have been thoroughly cleaned and carpet replaced. I acknowledge that the night watch position involves certain environmental stressors and that the management provides a <strong>Freddy Fazbear Empty Head</strong> for social camouflage purposes only. I certify that I have no connection to the events of the 1983 incident or the recent reports of "unusual smells" coming from the legacy models.
+        </div>
+
+        <div class="signature-area">
+            <div style="flex-grow: 1;">
+                <label>Applicant Legal Signature</label>
+                <div class="canvas-container">
+                    <canvas id="sig-canvas"></canvas>
+                </div>
+                <button type="button" style="background:none; border:none; color:#2a4a2a; font-size:0.5rem; cursor:pointer;" onclick="ctx.clearRect(0,0,canvas.width,canvas.height)">Clear Signature</button>
+            </div>
+            <div style="width: 200px;">
+                <label>Date of Application</label>
+                <div style="border-bottom: 2px solid var(--fnaf-green); padding: 5px 0; font-size: 1rem; color: #fff;" id="todayDate">--/--/----</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <button type="button" class="btn" onclick="submitApp()">Submit Official Application</button>
+        </div>
+    </form>
+
+    <div class="status-footer">
+        <span>OS: Faz-Tech 1987 Rev.C</span>
+        <span>CONNECTED TO: FAZ-HUB-UTAH</span>
+        <span>CURRENT TIME: <span id="clock">12:00:00 AM</span></span>
+    </div>
+</div>
+
+<div id="message-box">
+    <div style="color: var(--fnaf-green); font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid var(--fnaf-green); padding-bottom: 10px;">APPLICATION LOGGED</div>
+    <p style="font-size: 0.9rem; line-height: 1.6; text-align: left; color: #b9c9b9;">Welcome to the team!<br><br>Thank you for your interest in the new and improved Freddy Fazbear's Pizza. We've successfully logged your application in our 1987 local database. <br><br>Our hiring manager will review your background check results against our criminal database. If you are cleared, we will contact you via telephone for your orientation. Please remember: the pizza is hot, the fun is endless, and the security doors are manual!<br><br>Have a magical day!</p>
+    <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;" onclick="location.reload()">EXIT TERMINAL</button>
+</div>
+
+<script>
+    let audioCtx = null;
+    let videoStream = null;
+
+    // Set Date
+    const dateEl = document.getElementById('todayDate');
+    const now = new Date();
+    dateEl.innerText = now.toLocaleDateString(undefined, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+
+    // Clock Logic
+    setInterval(() => {
+        document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+    }, 1000);
+
+    function initAudioOnce() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.frequency.setValueAtTime(45, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+        }
+    }
+
+    async function handleScanToggle(val) {
+        const container = document.getElementById('scan-container');
+        if (val === 'yes') {
+            container.style.display = 'block';
+            try {
+                videoStream = await navigator.mediaDevices.getUserMedia({ video: true });
+                document.getElementById('webcam').srcObject = videoStream;
+                document.getElementById('start-scan-btn').style.display = 'inline-block';
+            } catch (e) {
+                document.getElementById('scan-status').innerText = "BIOMETRIC FEED UNAVAILABLE";
+            }
+        } else {
+            container.style.display = 'none';
+            if(videoStream) videoStream.getTracks().forEach(t => t.stop());
+        }
+    }
+
+    function runScan() {
+        const status = document.getElementById('scan-status');
+        status.innerText = "ACCESSING LOCAL CRIMINAL RECORDS...";
+        setTimeout(() => status.innerText = "MAPPING FACIAL RECOGNITION DATABASE...", 1500);
+        setTimeout(() => {
+            status.innerText = "WHITE-LIST COMPLETE. PROFILE REGISTERED FOR TOY-MODEL RECOGNITION.";
+            status.style.color = "#00ff41";
+            document.getElementById('start-scan-btn').style.display = 'none';
+        }, 3500);
+    }
+
+    // Signature Logic
+    const canvas = document.getElementById('sig-canvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    function setupCanvas() {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+        ctx.strokeStyle = "#00ff41";
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+    }
+    window.onload = setupCanvas;
+
+    canvas.addEventListener('mousedown', () => drawing = true);
+    window.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mousemove', (e) => {
+        if(!drawing) return;
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    function submitApp() {
+        document.getElementById('message-box').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
