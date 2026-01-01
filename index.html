@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fazbear Entertainment - Grand Re-Opening Portal</title>
+    <title>Fazbear Entertainment - GitHub Deployment Portal</title>
     <style>
         :root {
             --fnaf-green: #00ff41;
@@ -285,13 +285,13 @@
 
 <div class="crt-monitor">
     <div class="header">
-        <span class="grand-reopening">★ WELCOME BACK TO THE NEW AND IMPROVED FREDDY FAZBEAR'S PIZZA ★</span>
+        <span class="grand-reopening">★ WELCOME TO THE GITHUB PAGES DEPLOYMENT PORTAL ★</span>
         <h1>OFFICIAL EMPLOYMENT APPLICATION</h1>
-        <div class="sub-header">Fazbear Entertainment, Inc. // Form 1987-B // Hurricane, UT</div>
+        <div class="sub-header">Fazbear Entertainment, Inc. // Form 1987-GH // Hosted @ pages.github.com</div>
         <div class="vintage-note">Successor to the 1983-1985 "Old Location" Fleet</div>
     </div>
 
-    <form id="appForm">
+    <form id="appForm" onsubmit="event.preventDefault(); submitApp();">
         <!-- 01 Personal Info -->
         <div class="section-title">01. IDENTIFICATION & CONTACT</div>
         <div class="form-grid">
@@ -364,7 +364,7 @@
         <div class="section-title">04. SPECIALIZED SUITABILITY QUESTIONNAIRE</div>
         <div class="questionnaire">
             <div class="q-row">
-                <span class="q-text">Did you work at the previous 1983 or 1985 locations? (Fredbear's Family Diner or Circus Baby's?)</span>
+                <span class="q-text">Did you work at the previous 1983 or 1985 locations? (Fredbear's Family Diner?)</span>
                 <input type="checkbox">
             </div>
             <div class="q-row">
@@ -372,7 +372,7 @@
                 <input type="checkbox">
             </div>
             <div class="q-row">
-                <span class="q-text">Do you have experience with hand-cranked spring-lock mechanisms? (Legacy Only)</span>
+                <span class="q-text">Do you have experience with hand-cranked spring-lock mechanisms?</span>
                 <input type="checkbox">
             </div>
             <div class="q-row">
@@ -380,7 +380,7 @@
                 <input type="checkbox">
             </div>
             <div class="q-row">
-                <span class="q-text">Do you authorize the new "Toy" models to sync with your facial profile for recognition?</span>
+                <span class="q-text">Do you authorize the new "Toy" models to sync with your facial profile?</span>
                 <select style="width: 100px; padding: 2px;" id="biometric-select" onchange="handleScanToggle(this.value)">
                     <option value="no">NO</option>
                     <option value="yes">YES</option>
@@ -390,7 +390,7 @@
 
         <!-- Scanning Module -->
         <div id="scan-container">
-            <label>CRIMINAL DATABASE CROSS-REFERENCE SYNC (TOY MODEL PROTOCOL)</label>
+            <label>CRIMINAL DATABASE CROSS-REFERENCE SYNC (GITHUB-SYNC)</label>
             <div class="camera-view">
                 <video id="webcam" autoplay playsinline muted></video>
                 <div class="scan-line"></div>
@@ -402,7 +402,7 @@
         <!-- 05 Legal -->
         <div class="section-title">05. ACKNOWLEDGMENTS & WAIVERS</div>
         <div class="legal-block">
-            Fazbear Entertainment is not responsible for damage to property or person. Should death or dismemberment occur, a missing person's report will be filed within 90 days, or as soon as floors have been thoroughly cleaned and carpet replaced. I acknowledge that the night watch position involves certain environmental stressors and that the management provides a <strong>Freddy Fazbear Empty Head</strong> for social camouflage purposes only. I certify that I have no connection to the events of the 1983 incident or the recent reports of "unusual smells" coming from the legacy models.
+            Fazbear Entertainment is not responsible for damage to property or person. Should death or dismemberment occur, a missing person's report will be filed within 90 days, or as soon as floors have been thoroughly cleaned and carpet replaced. I acknowledge that the night watch position involves certain environmental stressors and that management provides a <strong>Freddy Fazbear Empty Head</strong> for social camouflage only. I certify that I have no connection to the 1983 incident or reports of "unusual smells" in legacy models.
         </div>
 
         <div class="signature-area">
@@ -411,7 +411,7 @@
                 <div class="canvas-container">
                     <canvas id="sig-canvas"></canvas>
                 </div>
-                <button type="button" style="background:none; border:none; color:#2a4a2a; font-size:0.5rem; cursor:pointer;" onclick="ctx.clearRect(0,0,canvas.width,canvas.height)">Clear Signature</button>
+                <button type="button" style="background:none; border:none; color:#2a4a2a; font-size:0.5rem; cursor:pointer;" onclick="clearSignature()">Clear Signature</button>
             </div>
             <div style="width: 200px;">
                 <label>Date of Application</label>
@@ -420,20 +420,20 @@
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
-            <button type="button" class="btn" onclick="submitApp()">Submit Official Application</button>
+            <button type="submit" class="btn">Submit Official Application</button>
         </div>
     </form>
 
     <div class="status-footer">
-        <span>OS: Faz-Tech 1987 Rev.C</span>
-        <span>CONNECTED TO: FAZ-HUB-UTAH</span>
+        <span>DOMAIN: <span id="domain-info">detecting...</span></span>
+        <span>GITHUB REPO: LIVE</span>
         <span>CURRENT TIME: <span id="clock">12:00:00 AM</span></span>
     </div>
 </div>
 
 <div id="message-box">
     <div style="color: var(--fnaf-green); font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid var(--fnaf-green); padding-bottom: 10px;">APPLICATION LOGGED</div>
-    <p style="font-size: 0.9rem; line-height: 1.6; text-align: left; color: #b9c9b9;">Welcome to the team!<br><br>Thank you for your interest in the new and improved Freddy Fazbear's Pizza. We've successfully logged your application in our 1987 local database. <br><br>Our hiring manager will review your background check results against our criminal database. If you are cleared, we will contact you via telephone for your orientation. Please remember: the pizza is hot, the fun is endless, and the security doors are manual!<br><br>Have a magical day!</p>
+    <p style="font-size: 0.9rem; line-height: 1.6; text-align: left; color: #b9c9b9;">Welcome to the team!<br><br>Thank you for your interest in the new and improved Freddy Fazbear's Pizza. We've successfully logged your application in our GitHub-hosted 1987 database. <br><br>Our hiring manager will review your background check results. If cleared, we will contact you via telephone for orientation. Remember: the pizza is hot, the fun is endless, and the security doors are manual!<br><br>Have a magical day!</p>
     <button class="btn" style="padding: 10px 20px; font-size: 0.8rem;" onclick="location.reload()">EXIT TERMINAL</button>
 </div>
 
@@ -441,13 +441,17 @@
     let audioCtx = null;
     let videoStream = null;
 
-    // Set Date
-    const dateEl = document.getElementById('todayDate');
-    const now = new Date();
-    dateEl.innerText = now.toLocaleDateString(undefined, {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+    // Set Date & Domain Info
+    window.addEventListener('load', () => {
+        const dateEl = document.getElementById('todayDate');
+        dateEl.innerText = new Date().toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        document.getElementById('domain-info').innerText = window.location.hostname || 'localhost';
+        setupCanvas();
     });
 
     // Clock Logic
@@ -487,8 +491,8 @@
 
     function runScan() {
         const status = document.getElementById('scan-status');
-        status.innerText = "ACCESSING LOCAL CRIMINAL RECORDS...";
-        setTimeout(() => status.innerText = "MAPPING FACIAL RECOGNITION DATABASE...", 1500);
+        status.innerText = "ACCESSING GITHUB USER DATABASE...";
+        setTimeout(() => status.innerText = "MAPPING FACIAL RECOGNITION HASHES...", 1500);
         setTimeout(() => {
             status.innerText = "WHITE-LIST COMPLETE. PROFILE REGISTERED FOR TOY-MODEL RECOGNITION.";
             status.style.color = "#00ff41";
@@ -503,28 +507,55 @@
 
     function setupCanvas() {
         const rect = canvas.getBoundingClientRect();
-        canvas.width = rect.width;
-        canvas.height = rect.height;
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
         ctx.strokeStyle = "#00ff41";
         ctx.lineWidth = 3;
         ctx.lineCap = "round";
     }
-    window.onload = setupCanvas;
 
-    canvas.addEventListener('mousedown', () => drawing = true);
+    function clearSignature() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+        drawing = true;
+        const rect = canvas.getBoundingClientRect();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    });
     window.addEventListener('mouseup', () => drawing = false);
     canvas.addEventListener('mousemove', (e) => {
         if(!drawing) return;
         const rect = canvas.getBoundingClientRect();
         ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    });
+
+    // Touch support for signature
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        drawing = true;
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches[0];
+        ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    });
+    canvas.addEventListener('touchend', () => drawing = false);
+    canvas.addEventListener('touchmove', (e) => {
+        if(!drawing) return;
+        e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const touch = e.touches[0];
+        ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
+        ctx.stroke();
     });
 
     function submitApp() {
         document.getElementById('message-box').style.display = 'block';
+        window.scrollTo(0, 0);
     }
+
+    window.addEventListener('resize', setupCanvas);
 </script>
 
 </body>
