@@ -284,7 +284,7 @@
 <body onclick="initAudioOnce()">
 
 <div class="crt-monitor">
-    <div class="header">
+    <div class="header" onclick="playClick()">
         <span class="grand-reopening">★ WELCOME TO THE GITHUB PAGES DEPLOYMENT PORTAL ★</span>
         <h1>OFFICIAL EMPLOYMENT APPLICATION</h1>
         <div class="sub-header">Fazbear Entertainment, Inc. // Form 1987-GH // Hosted @ pages.github.com</div>
@@ -297,25 +297,25 @@
         <div class="form-grid">
             <div class="form-section">
                 <label>First Name</label>
-                <input type="text" placeholder="John" required>
+                <input type="text" placeholder="John" required oninput="playClick()">
             </div>
             <div class="form-section">
                 <label>Middle Initial</label>
-                <input type="text" maxlength="1" placeholder="A.">
+                <input type="text" maxlength="1" placeholder="A." oninput="playClick()">
             </div>
             <div class="form-section">
                 <label>Last Name</label>
-                <input type="text" placeholder="Doe" required>
+                <input type="text" placeholder="Doe" required oninput="playClick()">
             </div>
         </div>
         <div class="form-grid">
             <div class="form-section" style="grid-column: span 2;">
                 <label>Current Address</label>
-                <input type="text" placeholder="123 Fazbear Ln, Hurricane, UT" required>
+                <input type="text" placeholder="123 Fazbear Ln, Hurricane, UT" required oninput="playClick()">
             </div>
             <div class="form-section">
                 <label>Phone Number</label>
-                <input type="tel" placeholder="(555) 000-0000" required>
+                <input type="tel" placeholder="(555) 000-0000" required oninput="playClick()">
             </div>
         </div>
 
@@ -324,15 +324,15 @@
         <div class="form-grid">
             <div class="form-section">
                 <label>Reference Name</label>
-                <input type="text" placeholder="Name" required>
+                <input type="text" placeholder="Name" required oninput="playClick()">
             </div>
             <div class="form-section">
                 <label>Relationship</label>
-                <input type="text" placeholder="Manager/Peer" required>
+                <input type="text" placeholder="Manager/Peer" required oninput="playClick()">
             </div>
             <div class="form-section">
                 <label>Reference Phone</label>
-                <input type="tel" placeholder="(555) 555-5555" required>
+                <input type="tel" placeholder="(555) 555-5555" required oninput="playClick()">
             </div>
         </div>
 
@@ -341,7 +341,7 @@
         <div class="form-grid">
             <div class="form-section">
                 <label>Desired Role</label>
-                <select required>
+                <select required onchange="playClick()">
                     <option value="">-- Choose Position --</option>
                     <option>Night Watchman (Graveyard Shift)</option>
                     <option>Party Coordinator (Day Shift)</option>
@@ -352,11 +352,11 @@
             </div>
             <div class="form-section">
                 <label>Start Date</label>
-                <input type="date" required>
+                <input type="date" required onchange="playClick()">
             </div>
             <div class="form-section">
                 <label>Expected Hourly Pay</label>
-                <input type="text" placeholder="$4.25 (Minimum Wage)">
+                <input type="text" placeholder="$4.25 (Minimum Wage)" oninput="playClick()">
             </div>
         </div>
 
@@ -365,23 +365,23 @@
         <div class="questionnaire">
             <div class="q-row">
                 <span class="q-text">Did you work at the previous 1983 or 1985 locations? (Fredbear's Family Diner?)</span>
-                <input type="checkbox">
+                <input type="checkbox" onclick="playClick()">
             </div>
             <div class="q-row">
                 <span class="q-text">Are you comfortable working in a dark office for extended periods?</span>
-                <input type="checkbox">
+                <input type="checkbox" onclick="playClick()">
             </div>
             <div class="q-row">
                 <span class="q-text">Do you have experience with hand-cranked spring-lock mechanisms?</span>
-                <input type="checkbox">
+                <input type="checkbox" onclick="playClick()">
             </div>
             <div class="q-row">
                 <span class="q-text">Can you remain calm if an animatronic mascot approaches your desk?</span>
-                <input type="checkbox">
+                <input type="checkbox" onclick="playClick()">
             </div>
             <div class="q-row">
                 <span class="q-text">Do you authorize the new "Toy" models to sync with your facial profile?</span>
-                <select style="width: 100px; padding: 2px;" id="biometric-select" onchange="handleScanToggle(this.value)">
+                <select style="width: 100px; padding: 2px;" id="biometric-select" onchange="handleScanToggle(this.value); playClick();">
                     <option value="no">NO</option>
                     <option value="yes">YES</option>
                 </select>
@@ -396,7 +396,7 @@
                 <div class="scan-line"></div>
             </div>
             <div id="scan-status" style="font-size: 0.75rem; margin-top: 10px; font-weight: bold;">LINKING...</div>
-            <button type="button" class="btn" id="start-scan-btn" style="margin-top: 10px; padding: 5px 20px; font-size: 0.7rem; display: none;" onclick="runScan()">CAPTURE PROFILE</button>
+            <button type="button" class="btn" id="start-scan-btn" style="margin-top: 10px; padding: 5px 20px; font-size: 0.7rem; display: none;" onclick="runScan(); playClick();">CAPTURE PROFILE</button>
         </div>
 
         <!-- 05 Legal -->
@@ -411,7 +411,7 @@
                 <div class="canvas-container">
                     <canvas id="sig-canvas"></canvas>
                 </div>
-                <button type="button" style="background:none; border:none; color:#2a4a2a; font-size:0.5rem; cursor:pointer;" onclick="clearSignature()">Clear Signature</button>
+                <button type="button" style="background:none; border:none; color:#2a4a2a; font-size:0.5rem; cursor:pointer;" onclick="clearSignature(); playClick();">Clear Signature</button>
             </div>
             <div style="width: 200px;">
                 <label>Date of Application</label>
@@ -420,7 +420,7 @@
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
-            <button type="submit" class="btn">Submit Official Application</button>
+            <button type="submit" class="btn" onclick="playClick()">Submit Official Application</button>
         </div>
     </form>
 
@@ -439,6 +439,7 @@
 
 <script>
     let audioCtx = null;
+    let humOsc = null;
     let videoStream = null;
 
     // Set Date & Domain Info
@@ -459,17 +460,51 @@
         document.getElementById('clock').innerText = new Date().toLocaleTimeString();
     }, 1000);
 
+    // Audio Logic
     function initAudioOnce() {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.frequency.setValueAtTime(45, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.start();
+            
+            // Continuous CRT Hum
+            humOsc = audioCtx.createOscillator();
+            const humGain = audioCtx.createGain();
+            
+            humOsc.type = 'sawtooth';
+            humOsc.frequency.setValueAtTime(50, audioCtx.currentTime); // Low frequency 50Hz hum
+            
+            humGain.gain.setValueAtTime(0.005, audioCtx.currentTime); // Very quiet
+            
+            const lpf = audioCtx.createBiquadFilter();
+            lpf.type = 'lowpass';
+            lpf.frequency.setValueAtTime(100, audioCtx.currentTime);
+            
+            humOsc.connect(lpf);
+            lpf.connect(humGain);
+            humGain.connect(audioCtx.destination);
+            
+            humOsc.start();
+            console.log("Audio Terminal Initialized");
         }
+    }
+
+    function playClick() {
+        if (!audioCtx) return;
+        
+        const clickOsc = audioCtx.createOscillator();
+        const clickGain = audioCtx.createGain();
+        
+        clickOsc.type = 'square';
+        clickOsc.frequency.setValueAtTime(150, audioCtx.currentTime);
+        clickOsc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
+        
+        clickGain.gain.setValueAtTime(0.02, audioCtx.currentTime);
+        clickGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
+        
+        clickOsc.connect(clickGain);
+        clickGain.connect(audioCtx.destination);
+        
+        clickOsc.start();
+        clickOsc.stop(audioCtx.currentTime + 0.1);
     }
 
     async function handleScanToggle(val) {
@@ -492,11 +527,16 @@
     function runScan() {
         const status = document.getElementById('scan-status');
         status.innerText = "ACCESSING GITHUB USER DATABASE...";
-        setTimeout(() => status.innerText = "MAPPING FACIAL RECOGNITION HASHES...", 1500);
+        setTimeout(() => {
+            status.innerText = "MAPPING FACIAL RECOGNITION HASHES...";
+            playClick();
+        }, 1500);
         setTimeout(() => {
             status.innerText = "WHITE-LIST COMPLETE. PROFILE REGISTERED FOR TOY-MODEL RECOGNITION.";
             status.style.color = "#00ff41";
             document.getElementById('start-scan-btn').style.display = 'none';
+            playClick();
+            playClick();
         }, 3500);
     }
 
